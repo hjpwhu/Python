@@ -32,3 +32,4 @@ def enwiki(srcPath, tarPath):
 if __name__ == '__main__':
     srcPath = "/home/hjp/Downloads/model/w2v/enwiki-20171201-pages-articles.xml.bz2"
     tarPath = "/home/hjp/Downloads/model/w2v/enwiki.txt"
+    enwiki(srcPath, tarPath)
