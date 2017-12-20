@@ -4,10 +4,8 @@ Created on Dec 19, 2017
 
 @Author: hjp
 
-Description: Extracting Wikipedia files into single text.
+Description: Extracting EnWikipedia files into single text.
 '''
-
-import logging
 
 from gensim.corpora import WikiCorpus
 
@@ -17,16 +15,16 @@ def enwiki(srcPath, tarPath):
     space = " "    
     
     output = open(tarPath, 'w')
-    wiki = WikiCorpus(srcPath, lemmatize=False, dictionary)
+    wiki = WikiCorpus(srcPath, lemmatize=False, dictionary={})
     
     for text in wiki.get_texts():
-        output.write(b' '.join(text).decode('utf-8')+'\n')
+        output.write(' '.join(text) + '\n')
         index += 1
         if (index % 10000 == 0):
-            logger.info("Saved " + str(index) + " articles.")
+            print("Saved " + str(index) + " articles.")
             
     output.close()
-    logger.info("Finished saved " + str(index) + " articles.")
+    print("Finished saved " + str(index) + " articles.")
         
     
 if __name__ == '__main__':
