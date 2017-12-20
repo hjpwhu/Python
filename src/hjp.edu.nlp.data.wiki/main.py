@@ -7,6 +7,9 @@ Created on Dec 19, 2017
 Description: Extracting EnWikipedia files into single text.
 '''
 
+import time
+import datetime
+
 from gensim.corpora import WikiCorpus
 
 
@@ -21,7 +24,7 @@ def enwiki(srcPath, tarPath):
         output.write(' '.join(text) + '\n')
         index += 1
         if (index % 10000 == 0):
-            print("Saved " + str(index) + " articles.")
+            print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "\tSaved " + str(index) + " articles.")
             
     output.close()
     print("Finished saved " + str(index) + " articles.")
