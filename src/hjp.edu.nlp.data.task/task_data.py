@@ -256,9 +256,33 @@ def data_zip(txtFile, outFile):
 #             wrtFile.write(labels[index].strip()+"\t"+line.strip()+"\n")
 #             index+=1
     
-        
+import os
+outFile = "/home/hjp/Downloads/train.txt"
+wrtFile = codecs.open(outFile, 'a+', 'utf-8') 
+# 遍历指定目录，显示目录下的所有文件名
+def eachFile(filepath):
+    pathDir =  os.listdir(filepath)
+    for allDir in pathDir:
+        child = os.path.join('%s%s' % (filepath, allDir))
+        print(child)
+        readFile(child)
+        #print child.decode('gbk') # .decode('gbk')是解决中文显示乱码问题
+
+# 读取文件内容并打印
+def readFile(filename):
+    fopen = open(filename, 'r') # r 代表read
+    for eachLine in fopen:
+        #print(eachLine)
+        tokens = eachLine.strip().split(" ")
+        if len(tokens) == 2 or len(eachLine.strip()) == 0:
+            wrtFile.write(eachLine.strip()+'\n')
+        else:
+            print(eachLine)
+    fopen.close()        
         
 def main():
+    fDir = "/home/hjp/Downloads/task8/train/data/tokenized/"
+    eachFile(fDir)
     
 #     
 #     txtFile = "/home/hjp/Downloads/semeval/task2/data/txt.txt"
@@ -277,18 +301,18 @@ def main():
 #     test_preFile = "/home/hjp/Downloads/semeval/task1d/data/31.txt"
 #     test_subFile = "/home/hjp/Downloads/semeval/task1d/data/V-oc_ar_pred.txt"
 #     
-    flag = True
-     
-    if flag:
-        #semeval_data(train_srcFile, train_tarFile)
-        #semeval_data(dev_srcFile, dev_tarFile)
-        #semeval_test(test_srcFile, test_tarFile)
-        os.makedirs("/home/hjp/Downloads/semeval/task2/data_es/train_txt") 
-        os.makedirs("/home/hjp/Downloads/semeval/task2/data_es/dev_txt")
-        os.makedirs("/home/hjp/Downloads/semeval/task2/data_es/test_txt")
-        data_split()
-    else:    
-        semeval_pred(test_srcFile, test_preFile, test_subFile)
+#     flag = True
+#      
+#     if flag:
+#         #semeval_data(train_srcFile, train_tarFile)
+#         #semeval_data(dev_srcFile, dev_tarFile)
+#         #semeval_test(test_srcFile, test_tarFile)
+#         os.makedirs("/home/hjp/Downloads/semeval/task2/data_es/train_txt") 
+#         os.makedirs("/home/hjp/Downloads/semeval/task2/data_es/dev_txt")
+#         os.makedirs("/home/hjp/Downloads/semeval/task2/data_es/test_txt")
+#         data_split()
+#     else:    
+#         semeval_pred(test_srcFile, test_preFile, test_subFile)
 
 
 if __name__ == "__main__":
